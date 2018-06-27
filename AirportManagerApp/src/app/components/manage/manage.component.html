@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>Post Person</h1>  
+  <form>
+    <div>
+      <label for="name">Name: </label><br>
+      <input class="form-control" type="text" #name>
+    </div>
+    <div>
+      <label for="flightNumber">Flight Number: </label><br>
+      <input class="form-control" type="text" #flightNumber>
+    </div>
+    <div>
+      <label for="date">Date: </label><br>
+      <input class="form-control" type="text" #date>
+    </div>
+    <div>
+      <label for="airport">Airport: </label><br>
+      <input class="form-control" type="text" #airport>
+    </div>
+  </form>
+  <button class="btn btn-success btn-margin" (click)="postPerson(name.value, flightNumber.value, date.value, airport.value)">Post new person</button>
+</div>

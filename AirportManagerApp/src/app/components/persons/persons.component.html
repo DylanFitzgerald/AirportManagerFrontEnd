@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row" style="padding: 15px">
+    <input class="col-md-4 form-control" type="text" placeholder="Search person to process" aria-label="Search" #name>
+    <button (click)="searchPersonByName(name.value)" style="margin: 10px 10px" class="btn btn-success col-md-1">Search</button>
+  </div>
+  <div [hidden]="processBool">
+    <p>
+      <ngb-alert type={{type}}>
+        Processed {{person.name}} ... {{processStatus}}
+      </ngb-alert>
+    </p>
+  </div>
+  <div [hidden]="searchBool">
+    <h3>Results</h3>
+    <table class="table table-striped border">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Flight Number</th>
+            <th>Transit Status</th>
+            <th>Date</th>
+            <th>Airport</th>
+            <th>Baggage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <td>{{person.name}}</td>
+          <td>{{person.flightNumber}}</td>
+          <td>{{person.transitStatus}}</td>
+          <td>{{person.date}}</td>
+          <td>{{person.airport}}</td>
+          <td>{{person.baggage}}</td>
+        </tbody>
+      </table>
+      <button (click)="processPerson(person.name)" class="btn btn-success">Process {{person.name}}</button>
+  </div>
+</div>
+
+<div class="container">
+  <h1>All People</h1>
+  <table class="table table-striped border">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Flight Number</th>
+        <th>Transit Status</th>
+        <th>Date</th>
+        <th>Airport</th>
+        <th>Baggage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let person of persons">
+        <td>{{person.name}}</td>
+        <td>{{person.flightNumber}}</td>
+        <td>{{person.transitStatus}}</td>
+        <td>{{person.date}}</td>
+        <td>{{person.airport}}</td>
+        <td>{{person.baggage}}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
