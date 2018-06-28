@@ -28,8 +28,8 @@ export class ManageComponent implements OnInit {
     this.dataService.postNewPerson(person).subscribe((res) => {
       
     });
+
     location.reload();
-    alert('Posted ' + name + 'to blockchain.');
   }
 
 }

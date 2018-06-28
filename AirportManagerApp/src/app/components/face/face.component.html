@@ -1,0 +1,15 @@
+<div class="container">
+  <webcam [height]="500" [width]="1000" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+</div>
+
+<div class="container">
+  <button class="btn btn-success" (click)="triggerSnapshot();">Take A Snapshot</button>
+</div>
+        
+<div class="container" *ngIf="webcamImage">
+  <h2>Image Captured!</h2>
+  <img [src]="webcamImage.imageAsDataUrl"/> 
+  <h2>Base64 Version</h2>
+  <p class="p-break">{{webcamImage.imageAsBase64}}</p>
+</div>
+
