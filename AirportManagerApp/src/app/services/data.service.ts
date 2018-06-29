@@ -32,6 +32,11 @@ export class DataService {
     .pipe(map(res => res.json()));
   }
 
+  uploadImage(data:any) {
+    return this.http.post('http://localhost:3000/request', data)
+    .pipe(map(res => res.json()));
+  }
+
   checkHistoryForPerson(id:any) {
     return this.http.get('http://localhost:3000/hyperledger/persons?action=queryHistoryForPerson&id=' + id, id)
     .pipe(map(res => res.json()));

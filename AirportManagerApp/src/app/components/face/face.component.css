@@ -2,3 +2,8 @@
     word-wrap: break-word;
     width: 100%;
  }
+
+ .btn-padding {
+     padding: 10px;
+     margin: 15px;
+ }

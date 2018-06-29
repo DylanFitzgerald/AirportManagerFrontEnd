@@ -1,15 +1,37 @@
-<div class="container">
-  <webcam [height]="500" [width]="1000" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+
+<div [hidden]="uploaded">
+  <p>
+    <ngb-alert type={{type}} [dismissible]="false">{{status}}</ngb-alert>
+  </p>
 </div>
 
-<div class="container">
-  <button class="btn btn-success" (click)="triggerSnapshot();">Take A Snapshot</button>
+<div *ngIf="!webcamImage">
+  <webcam style="margin: 200px" [height]="400" [width]="400" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+  <!-- <button class="btn btn-success btn-padding" (click)="triggerSnapshot();">Take Picture</button> -->
+  <div class="card" style="float: right; width: 300px; margin-right: 100px">
+    <div class="card-body">
+      <h5 class="card-title">Instructions</h5>
+      <p class="card-text">Take a picture of your face to upload for face recognition or check if face is in the bucket. You must enter a name for it to be uploaded.</p>
+      <button class="btn btn-success" (click)="triggerSnapshot();">Upload Picture</button>
+      <button class="btn btn-primary" style="margin-left: 20px" (click)="checkFace();">Check Face</button>
+    </div>
+  </div>
 </div>
-        
-<div class="container" *ngIf="webcamImage">
-  <h2>Image Captured!</h2>
-  <img [src]="webcamImage.imageAsDataUrl"/> 
-  <h2>Base64 Version</h2>
-  <p class="p-break">{{webcamImage.imageAsBase64}}</p>
+
+<div [hidden]="uploadBool">
+  <div class="container" *ngIf="webcamImage">
+    <h2>Image Captured!</h2>
+    <button class="btn btn-primary btn-padding" (click)="retakePhoto()">Retake Picture</button>
+    <img [src]="webcamImage.imageAsDataUrl"/> 
+    <form>
+      <div>
+        <label for="id">Name: </label><br>
+        <input class="form-control" type="text" #id>
+      </div>
+    </form>
+    <button class="btn btn-success btn-padding" (click)="upload(id.value);">Upload to Bucket</button>
+    <!-- <h2>Base64 Version</h2>
+    <p class="p-break">{{webcamImage.imageAsBase64}}</p> -->
+  </div>
 </div>
 
