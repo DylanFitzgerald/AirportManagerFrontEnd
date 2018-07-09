@@ -1,37 +1,52 @@
+<ng-progress   [speed]="200" [ease]="'linear'" [meteor]="true"
+              [spinner]="true" [spinnerPosition]="'right'" 
+              [color]="'red'" [trickleSpeed]="250" [thick]="false"
+></ng-progress>
 
 <div [hidden]="uploaded">
   <p>
-    <ngb-alert type={{type}} [dismissible]="false">{{status}}</ngb-alert>
+    <ngb-alert *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true" type={{type}} [dismissible]="true">{{status}}</ngb-alert>
   </p>
+</div>
+
+
+<div [hidden]="restart">
+  <h1>Found this face in bucket</h1>
+  <img [src]="webcamImage.imageAsDataUrl"/> 
+  <div class="card" style="float: right; width: 300px; margin-right: 100px">
+    <div class="card-body">
+      <h5 class="card-title">Instructions</h5>
+      <p class="card-text">Restart or try to process person in image.</p>
+      <button class="btn btn-success">Process Person</button>
+      <button class="btn btn-primary btn-padding" (click)="retakePhoto()" >Start Over</button>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="!webcamImage">
   <webcam style="margin: 200px" [height]="400" [width]="400" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
-  <!-- <button class="btn btn-success btn-padding" (click)="triggerSnapshot();">Take Picture</button> -->
   <div class="card" style="float: right; width: 300px; margin-right: 100px">
     <div class="card-body">
       <h5 class="card-title">Instructions</h5>
       <p class="card-text">Take a picture of your face to upload for face recognition or check if face is in the bucket. You must enter a name for it to be uploaded.</p>
-      <button class="btn btn-success" (click)="triggerSnapshot();">Upload Picture</button>
+      <!-- <button class="btn btn-success" (click)="triggerSnapshot();">Take Picture</button> -->
       <button class="btn btn-primary" style="margin-left: 20px" (click)="checkFace();">Check Face</button>
     </div>
   </div>
 </div>
 
-<div [hidden]="uploadBool">
+<div [hidden]="userDNE">
   <div class="container" *ngIf="webcamImage">
-    <h2>Image Captured!</h2>
-    <button class="btn btn-primary btn-padding" (click)="retakePhoto()">Retake Picture</button>
-    <img [src]="webcamImage.imageAsDataUrl"/> 
+    <img [src]="webcamImage.imageAsDataUrl"/>  
+    <h3>Want to add a new user with this face?</h3>  
     <form>
       <div>
         <label for="id">Name: </label><br>
-        <input class="form-control" type="text" #id>
+        <input style="width: 300px" class="form-control" type="text" #id>
       </div>
     </form>
-    <button class="btn btn-success btn-padding" (click)="upload(id.value);">Upload to Bucket</button>
-    <!-- <h2>Base64 Version</h2>
-    <p class="p-break">{{webcamImage.imageAsBase64}}</p> -->
+  <button class="btn btn-success btn-padding" (click)="upload(id.value);">Upload to Bucket</button>
+  <button class="btn btn-danger btn-padding" style="margin-left: 20px" (click)="retakePhoto()">Cancel</button>
   </div>
 </div>
 

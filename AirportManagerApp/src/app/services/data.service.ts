@@ -37,6 +37,11 @@ export class DataService {
     .pipe(map(res => res.json()));
   }
 
+  checkFace(face:any) {
+    return this.http.post('http://localhost:3000/compareFaces', face)
+    .pipe(map(res => res.json()));
+  }
+
   checkHistoryForPerson(id:any) {
     return this.http.get('http://localhost:3000/hyperledger/persons?action=queryHistoryForPerson&id=' + id, id)
     .pipe(map(res => res.json()));

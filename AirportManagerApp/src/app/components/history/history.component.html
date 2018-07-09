@@ -5,17 +5,17 @@
       <thead class="thead-dark">
         <tr>
           <th>Name</th>
-          <th>Id</th>
-          <th>Timestamp</th>
           <th>Status</th>
+          <th>Timestamp</th>
+          <th>Hash</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let entry of history">
           <td>{{entry.Value.name}}</td>
-          <td>{{entry.Id}}</td>
-          <td>{{entry.Timestamp}}</td>
           <td>{{entry.Value.transitStatus}}</td>
+          <td>{{entry.Timestamp}}</td>
+          <td>{{entry.Id}}</td>
         </tr>
       </tbody>
     </table>
@@ -31,28 +31,27 @@
 
 
 
-  <div class="container">
-      <h1>Get All History</h1>  
-      <div class="container" style="padding: 10px" *ngFor="let histArray of histories">
+<div class="container">
+    <h1>Get All History</h1>  
+    <div class="container" style="padding: 10px">
         <table class="table table-striped border" [hidden]='tableBool2'>
           <thead class="thead-dark">
             <tr>
               <th>Name</th>
-              <th>Id</th>
-              <th>Timestamp</th>
               <th>Status</th>
+              <th>Timestamp</th>
+              <th>Id</th>  
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let entry of histArray">
+            <tr *ngFor="let entry of multHistory">
               <td>{{entry.Value.name}}</td>
-              <td>{{entry.Id}}</td>
-              <td>{{entry.Timestamp}}</td>
               <td>{{entry.Value.transitStatus}}</td>
+              <td>{{entry.Timestamp}}</td>
+              <td>{{entry.Id}}</td>
             </tr>
           </tbody>
         </table>
-        <hr>
-        </div>
-      <button class="btn btn-success btn-margin" (click)="checkAllHistory()">Check All History</button>
-  </div>
+      </div>
+    <button class="btn btn-success btn-margin" (click)="checkAllHistory()">Check All History</button>
+</div>

@@ -5,6 +5,7 @@ import { RouterModule, Routes} from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { WebcamModule } from 'ngx-webcam';
+import { NgProgressModule } from '@ngx-progressbar/core';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
     NgbModule.forRoot(),
     FormsModule,
     HttpModule,
-    WebcamModule
+    WebcamModule,
+    NgProgressModule.forRoot()
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

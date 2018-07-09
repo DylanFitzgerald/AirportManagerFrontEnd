@@ -8,11 +8,9 @@ import { DataService } from '../../services/data.service';
 })
 export class ManageComponent implements OnInit {
 
-  constructor(private dataService:DataService) { }
+  constructor(private dataService:DataService) {}
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   postPerson(name, flightNumber, date, airport) {
     var person = {
@@ -24,12 +22,9 @@ export class ManageComponent implements OnInit {
           "airport": airport
       }
     }
-
     this.dataService.postNewPerson(person).subscribe((res) => {
-      
+    
     });
-
     location.reload();
   }
-
 }
