@@ -1,0 +1,9 @@
+<h1>Choose MKV Video to Upload to Stream</h1>
+<div class="form-group">
+  <label for="file">Choose File</label>
+  <input type="file"
+         id="file"
+         (change)="handleFileInput($event.target.files)">
+</div>
+
+<button (click)="uploadVideoToStream()" class="btn btn-primary">Upload Video to Stream</button>

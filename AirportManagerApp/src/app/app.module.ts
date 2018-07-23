@@ -15,13 +15,15 @@ import { HistoryComponent } from './components/history/history.component';
 
 import { DataService } from './services/data.service';
 import { FaceComponent } from './components/face/face.component';
+import { VideoComponent } from './components/video/video.component';
 
 const appRoutes: Routes = [  
   {path: '', component: HomeComponent},
   {path: 'persons', component: PersonsComponent},
   {path: 'manage', component: ManageComponent},
   {path: 'history', component: HistoryComponent},
-  {path: 'face', component: FaceComponent}
+  {path: 'face', component: FaceComponent},
+  {path: 'video', component: VideoComponent}
 ];
 
 @NgModule({
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
     PersonsComponent,
     ManageComponent,
     HistoryComponent,
-    FaceComponent
+    FaceComponent,
+    VideoComponent
   ],
   imports: [
     BrowserModule,

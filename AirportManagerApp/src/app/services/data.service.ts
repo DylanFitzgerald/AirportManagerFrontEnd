@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { RequestOptions, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
 
 
@@ -49,6 +50,17 @@ export class DataService {
 
   checkAllHistory() {
     return this.http.get('http://localhost:3000/hyperledger/persons?action=queryAllPersonsHistory')
+    .pipe(map(res => res.json()));
+  }
+
+  uploadMVKVideoToStream(video: File) {
+    var myHeaders = new Headers();
+    myHeaders.append('x-amzn-stream-name', 'dylan-video-stream');
+    myHeaders.append('x-amzn-stream-arn', 'arn:aws:kinesisvideo:us-east-1:360883585029:stream/dylan-video-stream/1531236987713');
+    myHeaders.append('x-amzn-fragment-timecode-type', 'ABSOLUTE');
+    myHeaders.append('x-amzn-producer-start-timestamp', '2018-07-10 15:36:27.713 UTC');
+    var options = new RequestOptions({headers: myHeaders});
+    return this.http.post('https://s-1e415f8b.kinesisvideo.us-east-1.amazonaws.com', video, options)
     .pipe(map(res => res.json()));
   }
 }
